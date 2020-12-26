@@ -1,0 +1,31 @@
+{
+  "name": "immutable-websocket",
+  "version": "1.0.0",
+  "engines": {
+    "node": "14.x"
+  },
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zimmah/immutable-websocket.git"
+  },
+  "author": "Zimri Leijen",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/zimmah/immutable-websocket/issues"
+  },
+  "homepage": "https://github.com/zimmah/immutable-websocket#readme",
+  "dependencies": {
+    "ethers": "^5.0.24",
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "mysql2": "^2.2.5",
+    "pg": "^8.5.1",
+    "websocket": "^1.0.33"
+  }
+}

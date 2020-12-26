@@ -1,0 +1,32 @@
+{
+  "name": "immutable-interview",
+  "version": "1.0.0",
+  "engines": {
+    "node": "14.x"
+  },
+  "description": "",
+  "main": "client/build/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd server && npm i && npm start",
+    "heroku-postbuild": "cd client && npm i && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zimmah/immutable-websocket.git"
+  },
+  "author": "Zimri Leijen",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/zimmah/immutable-websocket/issues"
+  },
+  "homepage": "https://github.com/zimmah/immutable-websocket#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "^4.0.1",
+    "websocket": "^1.0.33"
+  }
+}

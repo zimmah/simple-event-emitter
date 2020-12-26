@@ -34,7 +34,6 @@ async function initialize() {
     eventArray = await getEvents()
     eventArray.sort( (a, b) => a.timestamp - b.timestamp)
     initialized = true
-    sqlDisconnect()
     initEmitter.emit('ready')
 }
 initialize()
@@ -77,9 +76,8 @@ wss.on('connect', (client) => {
 
 contract.on('genericEvent', async (timestampHex, caller, {blockNumber}) => {
     const timestamp = Number(timestampHex)
-    sqlConnect()
+    eventArray.push({caller, timestamp})
     await setEvent(caller, timestamp, blockNumber)
-    sqlDisconnect()
     wss.connections.forEach( (connection) => {
         connection.send(JSON.stringify({timestamp, caller}))
     })

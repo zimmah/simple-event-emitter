@@ -21,7 +21,7 @@ const setEvent = (address, timestamp, blockNumber) => {
 
 const getEvents = () => {
     return new Promise((resolve, reject) => {
-        client.query('SELECT * FROM events ORDER BY id ASC', (error, result) => {
+        client.query('SELECT * FROM events ORDER BY blocknumber ASC', (error, result) => {
             if (error) return reject(error)
             resolve(result.rows)
         })

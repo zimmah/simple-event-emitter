@@ -50,7 +50,7 @@ const wss = new webSocketServer({
 })
 
 function originIsAllowed(origin) {
-    return origin === 'https://simple-blockchain-events.herokuapp.com/'
+    return origin === 'https://simple-blockchain-events.herokuapp.com'
 }
 
 function sendEvents(client) {

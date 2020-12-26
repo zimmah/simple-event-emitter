@@ -5,7 +5,7 @@ const EventEmitter = require('events')
 const path = require('path')
 const { ethers, Contract } = require('ethers')
 const eventEmitterAbi = require('../client/src/contract/eventEmitter.json')
-const { getEvents, setEvent, getLastSavedBlock } = require('./queries')
+const { getEvents, setEvent, getLastSavedBlock, sqlConnect, sqlDisconnect } = require('./queries')
 
 const provider = ethers.getDefaultProvider('ropsten', 
     {
@@ -20,6 +20,7 @@ const initEmitter = new EventEmitter()
 let eventArray = []
 
 async function initialize() {
+    sqlConnect()
     const getEventFilter = (filter) => contract.filters[filter]().topics[0]
     const lastSavedBlock = (await getLastSavedBlock())[0]?.blocknumber || 9332974
     const pastEvents = await contract.queryFilter(getEventFilter('genericEvent'), lastSavedBlock + 1, "latest")
@@ -33,6 +34,7 @@ async function initialize() {
     eventArray = await getEvents()
     eventArray.sort( (a, b) => a.timestamp - b.timestamp)
     initialized = true
+    sqlDisconnect()
     initEmitter.emit('ready')
 }
 initialize()
@@ -73,9 +75,11 @@ wss.on('connect', (client) => {
     sendEvents(client)
 })
 
-contract.on('genericEvent', (timestampHex, caller, {blockNumber}) => {
+contract.on('genericEvent', async (timestampHex, caller, {blockNumber}) => {
     const timestamp = Number(timestampHex)
-    setEvent(caller, timestamp, blockNumber)
+    sqlConnect()
+    await setEvent(caller, timestamp, blockNumber)
+    sqlDisconnect()
     wss.connections.forEach( (connection) => {
         connection.send(JSON.stringify({timestamp, caller}))
     })

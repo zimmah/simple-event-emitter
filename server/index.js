@@ -12,7 +12,7 @@ const provider = ethers.getDefaultProvider('ropsten',
         alchemy: 'API-KEY',
     }
 )
-const eventEmitterAddress = '0x64F408fCdAFA93C8301Be04d0a15a282f19616fF'
+const eventEmitterAddress = '0x3FB2c639fA4559D4EE8B0b74e16D278BdE480E25'
 const contract = new Contract(eventEmitterAddress, eventEmitterAbi, provider)
 
 let initialized = false

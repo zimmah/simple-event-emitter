@@ -22,7 +22,7 @@
   "homepage": "https://github.com/zimmah/immutable-websocket#readme",
   "dependencies": {
     "ethers": "^5.0.24",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "http": "0.0.1-security",
     "mysql2": "^2.2.5",
     "pg": "^8.5.1",
